@@ -3,12 +3,14 @@ stages:
   - build
 
 .sandbox_rules:
-  - when: manual
+  - rules:
+    - when: manual
 
 sandbox:
   stage: build
   image: registry.gitlab.com/scandyna/docker-images-ubuntu/ubuntu-20.04-xserver-build-qt:latest
   rules:
-    - !reference [.sandbox_rules, rules]
+    - when: manual
+    #- !reference [.sandbox_rules, rules]
   script:
     - echo "just a sandbox"
